@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Increment, Decrement, Reset } from "./Redux/action/action";
+import CounterReducer from "./Redux/reducer/CounterReducer";
 
-function App() {
+const App = () => {
+  let value = useSelector(state => state);
+  console.log(value);
+  let dispatch = useDispatch();
+  let { CounterReducer } = value;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{CounterReducer}</h1>
+      <button onClick={() => dispatch(Increment())}>Increment</button>
+      <button onClick={() => dispatch(Decrement())}>Decrement</button>
+      <button onClick={() => dispatch(Reset())}>Reset</button>
     </div>
   );
-}
+};
 
 export default App;
